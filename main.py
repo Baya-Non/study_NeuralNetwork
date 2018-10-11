@@ -11,6 +11,7 @@ network = TwoLayerNetWork(input_size=784, hidden_size=50, output_size=10)
 
 iters_num = 10000  # 繰り返しの回数を適宜設定する
 train_size = x_train.shape[0]
+test_size = x_test.shape[0]
 batch_size = 100
 learning_rate = 0.1
 
@@ -18,9 +19,14 @@ train_loss_list = []
 train_acc_list = []
 test_acc_list = []
 
+print('train size is {0} '.format(train_size))
+print('test size is {0} '.format(test_size))
 iter_per_epoch = max(train_size / batch_size, 1)
+print(max(train_size / batch_size, 1))
 
 for i in range(iters_num):
+
+    #100個の学習画像を6000枚の学習画像から抽出
     batch_mask = np.random.choice(train_size, batch_size)
     x_batch = x_train[batch_mask]
     t_batch = t_train[batch_mask]
